@@ -15,3 +15,11 @@ ingredients_serialized = open(url).read
 ingredients = JSON.parse(ingredients_serialized)
 
 ingredients['drinks'].each { |ingredient| Ingredient.create(name: ingredient['strIngredient1']) }
+
+15.times do
+  random_image = (rand() * 50).to_i
+  photo = "https://picsum.photos/300/200?image=#{random_image}"
+  cocktail = Cocktail.new(name: Faker::Beer.style)
+  cocktail.remote_photo_url = photo
+  cocktail.save
+end
